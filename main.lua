@@ -13,7 +13,7 @@ function movemodel(model,start,End,AddBy)
  until i >= 1
 end
 
-local dist = (Start.p - End.p).Magnitude / speed
+local dist = (Start.Position - End.Position).Magnitude / speed
 
 local add = 1 / dist
 local Players = game:GetService('Players')
