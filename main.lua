@@ -1,98 +1,22 @@
-for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
-	v:Disable()
+wait(2.5)
+local hZ = 1 / 60
+local speed = .3
+local start = CFrame.new(0, 0, 0) -- Set this to be equal to what the start position of the part should be.
+local End = CFrame.new(0, 5, 100) -- Where you want to move the part to.
+
+function movemodel(model,start,End,AddBy)
+    local i = 0
+ repeat
+  local x = game:GetService("RunService").Heartbeat:Wait() / hZ
+  i = math.clamp(i + (AddBy * x), 0, 1)
+  model:SetPrimaryPartCFrame(start:Lerp(End,i))
+ until i >= 1
 end
 
-game:GetService("StarterGui"):SetCore("SendNotification",{
-        Title = "AutoFarm", -- Required
-	Text = "O autofarm começou", -- Required
-})
-		local pathfindingService = game:GetService("PathfindingService")
-		local Workspace = game:GetService('Workspace')
-		local Players = game:GetService('Players')
-		local Client = Players.LocalPlayer
-		local tentativas = 0;
-		local pathfindingService = game:GetService("PathfindingService")
-		local humanoid = Client.Character:WaitForChild("Humanoid")
-		local Character = Client.Character;
-		local Humanoid = Character:FindFirstChild("Humanoid") or Character:WaitForChild("Humanoid");
-		local RootPart = Character:FindFirstChild("HumanoidRootPart") or Character:WaitForChild("HumanoidRootPart");
-		local RunService = game:GetService('RunService');
-		
+local dist = (Start.p - End.p).Magnitude / speed
 
-	
-		
-		
+local add = 1 / dist
+local Players = game:GetService('Players')
+local Client = Players.LocalPlayer
 
-
-while wait() do
-		
-		
-				
-		
-		
-
-
- 		local c;
-		local h;
-		local bv;
-		local bav;
-		local cam;
-		local flying;
-		local p = Client;
-	
-		function noclip()
-		    for _, part in pairs(Client.Character:GetDescendants()) do
-		        if part:IsA("BasePart") then
-		            part.CanCollide = false
-		        end
-		    end
-		end
-			
-		local StartFly = function ()
-		    if not Client.Character or not Character.Head or flying then return end;
-		    c = Character;
-		    h = Humanoid;
-		    h.PlatformStand = true;
-		    cam = workspace:WaitForChild('Camera');
-		    bv = Instance.new("BodyVelocity");
-		    bav = Instance.new("BodyAngularVelocity");
-		    bv.Velocity, bv.MaxForce, bv.P = Vector3.new(0, 0, 0), Vector3.new(10000, 10000, 10000), 1000;
-		    bav.AngularVelocity, bav.MaxTorque, bav.P = Vector3.new(0, 0, 0), Vector3.new(10000, 10000, 10000), 1000;
-		    bv.Parent = c.Head;
-		    bav.Parent = c.Head;
-		    flying = true;
-		    h.Died:connect(function() flying = false end);
-		end;
-	
-			
-
-
-
-
-		noclip()
-		StartFly()
-		local CoinContainer = Workspace:FindFirstChild("CoinContainer", true);
-	 	if CoinContainer then
-		    print("oi")
-                    local coin = CoinContainer:FindFirstChild("Coin_Server");
-                    if coin then
-                        repeat
-				local path = pathfindingService:CreatePath({
-				    AgentRadius = 2,
-				    AgentHeight = 5,
-				    AgentCanJump = true,
-				    AgentJumpHeight = 10,
-				})
-
-				path:ComputeAsync(Character.HumanoidRootPart.Position, coin.Position)
-				humanoid:MoveTo(destino)
-
-                            --RootPart.CFrame = CFrame.new(coin.Position - Vector3.new(0, 1.5, 0)) * CFrame.Angles(0, 0, math.rad(90));
-                            RunService.Stepped:Wait(0.8);
-                            
-                        until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server";
-                wait(1.5);
-            
-		end	
-	end
-end
+movemodel(Client.Character, start, End, add)
