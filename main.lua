@@ -6,7 +6,7 @@ game:GetService("StarterGui"):SetCore("SendNotification",{
         Title = "AutoFarm", -- Required
 	Text = "O autofarm começou", -- Required
 })
-
+		local pathfindingService = game:GetService("PathfindingService")
 		local Workspace = game:GetService('Workspace')
 		local Players = game:GetService('Players')
 		local Client = Players.LocalPlayer
@@ -77,8 +77,18 @@ while wait() do
                     local coin = CoinContainer:FindFirstChild("Coin_Server");
                     if coin then
                         repeat
-                            RootPart.CFrame = CFrame.new(coin.Position - Vector3.new(0, 1.0, 0)) * CFrame.Angles(0, 0, math.rad(90));
-                            RunService.Stepped:Wait(1.5);
+				local path = pathfindingService:CreatePath({
+				    AgentRadius = 2,
+				    AgentHeight = 5,
+				    AgentCanJump = true,
+				    AgentJumpHeight = 10,
+				})
+
+				path:ComputeAsync(Character.HumanoidRootPart.Position, coin.Position)
+				humanoid:MoveTo(destino)
+
+                            --RootPart.CFrame = CFrame.new(coin.Position - Vector3.new(0, 1.5, 0)) * CFrame.Angles(0, 0, math.rad(90));
+                            RunService.Stepped:Wait(0.8);
                             
                         until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server";
                 wait(1.5);
