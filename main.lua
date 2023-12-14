@@ -7,13 +7,6 @@ game:GetService("StarterGui"):SetCore("SendNotification",{
 	Text = "O autofarm começou", -- Required
 })
 
-function noclip()
-    for _, part in pairs(Client.Character:GetDescendants()) do
-        if part:IsA("BasePart") then
-            part.CanCollide = false
-        end
-    end
-end
 	
 		
 		
@@ -46,6 +39,14 @@ while wait() do
 		local cam;
 		local flying;
 		local p = Client;
+	
+		function noclip()
+		    for _, part in pairs(Client.Character:GetDescendants()) do
+		        if part:IsA("BasePart") then
+		            part.CanCollide = false
+		        end
+		    end
+		end
 			
 		local StartFly = function ()
 		    if not Client.Character or not Character.Head or flying then return end;
