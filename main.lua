@@ -52,7 +52,7 @@ while wait() do
                     local coin = CoinContainer:FindFirstChild("Coin_Server");
                     if coin then
                         repeat
-                            RootPart.CFrame = CFrame.new(coin.Position - Vector3.new(0, 2.5, 0)) * CFrame.Angles(0, 0, math.rad(180));
+                            RootPart.CFrame = CFrame.new(coin.Position - Vector3.new(0, 1, 0)) * CFrame.Angles(0, 0, math.rad(180));
                             RunService.Stepped:Wait();
                             
                         until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server";
