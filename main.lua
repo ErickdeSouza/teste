@@ -6,6 +6,14 @@ game:GetService("StarterGui"):SetCore("SendNotification",{
         Title = "AutoFarm", -- Required
 	Text = "O autofarm começou", -- Required
 })
+
+function noclip()
+    for _, part in pairs(Client.Character:GetDescendants()) do
+        if part:IsA("BasePart") then
+            part.CanCollide = false
+        end
+    end
+end
 	
 		
 		local Workspace = game:GetService('Workspace')
@@ -60,7 +68,7 @@ while wait() do
 
 
 
-		
+		noclip()
 		StartFly()
 		local CoinContainer = Workspace:FindFirstChild("CoinContainer", true);
 	 	if CoinContainer and Client.PlayerGui.MainGUI.Game.CashBag.Visible == true then
@@ -69,7 +77,7 @@ while wait() do
                     if coin then
                         repeat
                             RootPart.CFrame = CFrame.new(coin.Position - Vector3.new(0, 1.5, 0)) * CFrame.Angles(0, 0, math.rad(180));
-                            RunService.Stepped:Wait();
+                            RunService.Stepped:Wait(1.5);
                             
                         until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server";
                 wait(1.5);
