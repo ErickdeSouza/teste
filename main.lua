@@ -1,7 +1,7 @@
 wait(2.5)
 local hZ = 1 / 60
 local speed = .3
-local start = CFrame.new(0, 0, 0) -- Set this to be equal to what the start position of the part should be.
+local Start = CFrame.new(0, 0, 0) -- Set this to be equal to what the start position of the part should be.
 local End = CFrame.new(0, 5, 100) -- Where you want to move the part to.
 
 function movemodel(model,start,End,AddBy)
