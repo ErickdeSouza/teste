@@ -59,7 +59,7 @@ while wait() do
 		
 		StartFly()
 		local CoinContainer = Workspace:FindFirstChild("CoinContainer", true);
-	 	if CoinContainer and Client.PlayerGui.MainGUI.Game.CoinBagOld.Visible == true then
+	 	if CoinContainer and Client.PlayerGui.MainGUI.Game.CoinBagOld.Coins == true then
 		    print("oi")
                     local coin = CoinContainer:FindFirstChild("Coin_Server");
                     if coin then
