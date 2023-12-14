@@ -9,7 +9,7 @@ function movemodel(model,start,End,AddBy)
  repeat
   local x = game:GetService("RunService").Heartbeat:Wait() / hZ
   i = math.clamp(i + (AddBy * x), 0, 1)
-  model:SetPrimaryPartCFrame(start:Lerp(End,i))
+  model:SetPrimaryPartCFrame(Start:Lerp(End,i))
  until i >= 1
 end
 
