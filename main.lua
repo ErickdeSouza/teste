@@ -1,10 +1,13 @@
+for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
+	v:Disable()
+end
+
+
 while wait() do
 		
 		
 				
-		for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
-		    v:Disable()
-		end
+		
 		
 
 			
@@ -49,13 +52,16 @@ while wait() do
 		
 		StartFly()
 		local CoinContainer = Workspace:FindFirstChild("CoinContainer", true);
+	 	if CoinContainer and Client.PlayerGui.MainGUI.Game.CashBag.Visible == true then
                     local coin = CoinContainer:FindFirstChild("Coin_Server");
                     if coin then
                         repeat
-                            RootPart.CFrame = CFrame.new(coin.Position - Vector3.new(0, 0.5, 0)) * CFrame.Angles(0, 0, math.rad(180));
+                            RootPart.CFrame = CFrame.new(coin.Position - Vector3.new(0, 1.5, 0)) * CFrame.Angles(0, 0, math.rad(180));
                             RunService.Stepped:Wait();
                             
                         until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server";
                 wait(1.5);
-            end
-        end
+            
+		end	
+	end
+end
