@@ -2,6 +2,10 @@ for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) d
 	v:Disable()
 end
 
+game:GetService("StarterGui"):SetCore("SendNotification",{
+        Title = "AutoFarm", -- Required
+	Text = "O autofarm começou", -- Required
+})
 
 while wait() do
 		
@@ -23,10 +27,7 @@ while wait() do
 		local RootPart = Character:FindFirstChild("HumanoidRootPart") or Character:WaitForChild("HumanoidRootPart");
 		local RunService = game:GetService('RunService');
 
- 		game:GetService("StarterGui"):SetCore("SendNotification",{
-                    Title = "AutoFarm", -- Required
-                    Text = "O autofarm começou", -- Required
-                })
+ 	
 	
 		local StartFly = function ()
 		    if not Client.Character or not Character.Head or flying then return end;
