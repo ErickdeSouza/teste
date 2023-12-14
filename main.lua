@@ -6,15 +6,7 @@ game:GetService("StarterGui"):SetCore("SendNotification",{
         Title = "AutoFarm", -- Required
 	Text = "O autofarm começou", -- Required
 })
-
-while wait() do
-		
-		
-				
-		
-		
-
-			
+	
 		
 		local Workspace = game:GetService('Workspace')
 		local Players = game:GetService('Players')
@@ -26,6 +18,18 @@ while wait() do
 		local Humanoid = Character:FindFirstChild("Humanoid") or Character:WaitForChild("Humanoid");
 		local RootPart = Character:FindFirstChild("HumanoidRootPart") or Character:WaitForChild("HumanoidRootPart");
 		local RunService = game:GetService('RunService');
+
+
+while wait() do
+		
+		
+				
+		
+		
+
+			
+		
+		
 
  		local c;
 		local h;
