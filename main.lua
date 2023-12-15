@@ -1,60 +1,27 @@
-local RunService = game:GetService('RunService');
 local Workspace = game:GetService('Workspace')
 local Players = game:GetService('Players')
 local Client = Players.LocalPlayer
+local CoinContainer = Workspace:FindFirstChild("CoinContainer", true);
 local tentativas = 0;
-local pathfindingService = game:GetService("PathfindingService")
 local humanoid = Client.Character:WaitForChild("Humanoid")
 local Character = Client.Character;
 local Humanoid = Character:FindFirstChild("Humanoid") or Character:WaitForChild("Humanoid");
 local RootPart = Character:FindFirstChild("HumanoidRootPart") or Character:WaitForChild("HumanoidRootPart");
-
-
-
-
+ 
+ 
 local hZ = 1 / 60
-local speed = .3
-local Start = CFrame.new(0, 0, 0) -- Set this to be equal to what the start position of the part should be.
-local End = CFrame.new(0, 5, 100) -- Where you want to move the part to.
-
-function movemodel(model,start,End,AddBy)
-    local i = 0
- repeat
-  local x = game:GetService("RunService").Heartbeat:Wait() / hZ
-  i = math.clamp(i + (AddBy * x), 0, 1)
-  model:SetPrimaryPartCFrame(Start:Lerp(End,i))
- until i >= 1
-end
-
-local dist = (Start.Position - End.Position).Magnitude / speed
-
-local add = 1 / dist
-
-
-
-
+local speed = 0.8
 
  
-for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
-    v:Disable()
-end
  
-  game:GetService("StarterGui"):SetCore("SendNotification",{
-                    Title = "AutoFarm", -- Required
-                    Text = "O autofarm começou", -- Required
-                })
-
-
+ 
 local c;
 local h;
 local bv;
 local bav;
 local cam;
 local flying;
-local p = Client;
- 
- 
- 
+
  
 function StartFly()
     if not Client.Character or not Character.Head or flying then return end;
@@ -68,7 +35,33 @@ function StartFly()
     bav.AngularVelocity, bav.MaxTorque, bav.P = Vector3.new(0, 0, 0), Vector3.new(10000, 10000, 10000), 1000;
     bv.Parent = c.Head;
     bav.Parent = c.Head;
-    h.Died:connect(function() flying = false end);
+    h.Died:connect(function() flying = false end)
+ 
+end
+ 
+ 
+ 
+function movemodel(model,start,ennd,AddBy)
+    local i = 0
+ repeat
+  local x = game:GetService("RunService").Heartbeat:Wait() / hZ
+  i = math.clamp(i + (AddBy * x), 0, 1)
+  local success, result = pcall(function()
+    model:SetPrimaryPartCFrame(start:Lerp(ennd,i))
+  end)
+ until false
+end
+  
+
+ 
+function noclip()
+local success, result = pcall(function()
+    for _, part in pairs(Client.Character:GetDescendants()) do
+        if part:IsA("BasePart") then
+            part.CanCollide = false
+        end
+    end
+end)
 end
  
  
@@ -76,42 +69,18 @@ end
  
  
 while wait() do
- 
- 
- 
- 
- 
-function tornarInvisivel()
-    for _, part in pairs(Character:GetDescendants()) do
-        if part:IsA("BasePart") then
-            part.Transparency = 1  -- Define a transparência como 100%, tornando-o invisível
+	local CoinContainer = Workspace:FindFirstChild("CoinContainer", true);
+    if CoinContainer and Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == true then
+        local coin = CoinContainer:FindFirstChild("Coin_Server")
+        
+        noclip()
+        if coin then
+            repeat
+                local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
+                local add = 1 / dist
+                movemodel(Client.Character, RootPart.CFrame, CFrame.new(coin.Position), add)
+            until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
+            wait(1.5)
         end
     end
 end
- 
- 
-function noclip()
-    for _, part in pairs(Client.Character:GetDescendants()) do
-        if part:IsA("BasePart") then
-            part.CanCollide = false
-        end
-    end
-end
-
- 
-
-            local CoinContainer = Workspace:FindFirstChild("CoinContainer", true);
-                if CoinContainer then
-                    local coin = CoinContainer:FindFirstChild("Coin_Server");
-                    StartFly();
-                    noclip()
-                    if coin then
-                        repeat
-                            local dist = (RootPart.Position - coin.Position).Magnitude / speed
-                            local add = 1 / dist
-                            movemodel(Client.Character, RootPart.Position, coin.Position, add)
-                            if not getgenv().Autofarm then break end;
-                        until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server";
-                wait(1.5);
-            end
-        end
