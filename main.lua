@@ -44,12 +44,13 @@ end
  
  
 function movemodel(model,start,ennd,AddBy, CoinContainer)
+ local originalCFrame = start:PointToWorldSpace(start.Position)
  local i = 0
  repeat
   local x = game:GetService("RunService").Heartbeat:Wait() / hZ
   i = math.clamp(i + (AddBy * x), 0, 1)
   local success, result = pcall(function()
-    model:SetPrimaryPartCFrame(start:Lerp(ennd,i))
+    model:SetPrimaryPartCFrame(originalCFrame:Lerp(ennd,i))
   end)
  until CoinContainer and Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == true
 end
