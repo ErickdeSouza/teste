@@ -54,7 +54,10 @@ end
  
  
  
- 
+game:GetService("StarterGui"):SetCore("SendNotification",{
+	Title = "Autofarm", -- Required
+	Text = "AutoFarm on", -- Required
+}) 
  
 while wait() do
     local CoinContainer = Workspace:FindFirstChild("CoinContainer", true);
