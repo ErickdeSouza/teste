@@ -7,7 +7,7 @@ local humanoid = Client.Character:WaitForChild("Humanoid")
 local Character = Client.Character;
 local Humanoid = Character:FindFirstChild("Humanoid") or Character:WaitForChild("Humanoid");
 local RootPart = Character:FindFirstChild("HumanoidRootPart") or Character:WaitForChild("HumanoidRootPart");
- 
+local RunService = game:GetService('RunService');
  
 local hZ = 1 / 60
 local speed = 0.8
@@ -79,6 +79,7 @@ while wait() do
                 local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
                 local add = 1 / dist
                 movemodel(Client.Character, RootPart.CFrame, CFrame.new(coin.Position), add)
+		RunService.Stepped:Wait();
             until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
             wait(1.5)
         end
