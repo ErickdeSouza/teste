@@ -14,18 +14,30 @@ local speed = .8
 
  
  
-function movemodel(model,start,ennd,AddBy)
+function movemodel(model, start, ennd, AddBy)
     local i = 0
- repeat
-  local x = game:GetService("RunService").Heartbeat:Wait() / hZ
-  i = math.clamp(i + (AddBy * x), 0, 1)
-  local success, result = pcall(function()
-    model:SetPrimaryPartCFrame(start:Lerp(ennd,i))
-  end)
- until false
-end
-  
+    local isMoving = true
+    
+    while isMoving do
+        local x = game:GetService("RunService").Heartbeat:Wait() / hZ
+        i = math.clamp(i + (AddBy * x), 0, 1)
 
+        local success, result = pcall(function()
+            model:SetPrimaryPartCFrame(start:Lerp(ennd, i))
+        end)
+
+        if not success then
+            print("Erro ao mover o modelo:", result)
+            isMoving = false  -- Encerra o movimento em caso de erro
+        end
+
+        if i >= 1 then
+            isMoving = false  -- Encerra o movimento quando atinge o destino
+        end
+
+        RunService.Stepped:Wait()
+    end
+end
  
 function noclip()
 local success, result = pcall(function()
