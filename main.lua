@@ -16,11 +16,11 @@ local speed = .8
 function movemodel(model, start, ennd, AddBy)
     local i = 0
     local isMoving = true
-    
-    while isMoving do
-	local CoinContainer = Workspace:FindFirstChild("CoinContainer", true);
-    	if CoinContainer and Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == true then
+
+    local CoinContainer = Workspace:FindFirstChild("CoinContainer", true);
+    if CoinContainer and Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == true then
  
+	    while isMoving do
 	        local x = game:GetService("RunService").Heartbeat:Wait() / hZ
 	        i = math.clamp(i + (AddBy * x), 0, 1)
 	
@@ -35,11 +35,11 @@ function movemodel(model, start, ennd, AddBy)
 	
 	        if i >= 1 then
 	            isMoving = false  -- Encerra o movimento quando atinge o destino
-		end
+	        end
 	
-             	RunService.Stepped:Wait()
-	end		
-    end
+	        RunService.Stepped:Wait()
+	    end
+      end
 end
  
 function noclip()
