@@ -43,7 +43,7 @@ end
  
  
  
-function movemodel(model,start,ennd,AddBy)
+function movemodel(model,start,ennd,AddBy, CoinContainer)
  local i = 0
  repeat
   local x = game:GetService("RunService").Heartbeat:Wait() / hZ
@@ -51,7 +51,7 @@ function movemodel(model,start,ennd,AddBy)
   local success, result = pcall(function()
     model:SetPrimaryPartCFrame(start:Lerp(ennd,i))
   end)
- until i >= 1
+ until CoinContainer and Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == true
 end
   
 
@@ -67,7 +67,10 @@ end)
 end
  
  
- 
+ game:GetService("StarterGui"):SetCore("SendNotification",{
+	Title = "AutoFarm", -- Required
+	Text = "Autofarm começou", 
+})
  
  
 while wait() do
@@ -80,7 +83,7 @@ while wait() do
             repeat
                 local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
                 local add = 1 / dist
-                movemodel(Client.Character, RootPart.CFrame, CFrame.new(coin.Position), add)
+                movemodel(Client.Character, RootPart.CFrame, CFrame.new(coin.Position), add, CoinContainer)
             until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
             wait(1.5)
         end
