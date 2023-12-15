@@ -10,7 +10,7 @@ local RootPart = Character:FindFirstChild("HumanoidRootPart") or Character:WaitF
 local RunService = game:GetService('RunService');
  
 local hZ = 1 / 60
-local speed = 0.8
+local speed = .8
 
  
  
