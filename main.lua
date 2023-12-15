@@ -12,30 +12,33 @@ local RunService = game:GetService('RunService');
 local hZ = 1 / 60
 local speed = .8
 
- 
- 
+
 function movemodel(model, start, ennd, AddBy)
     local i = 0
     local isMoving = true
     
     while isMoving do
-        local x = game:GetService("RunService").Heartbeat:Wait() / hZ
-        i = math.clamp(i + (AddBy * x), 0, 1)
-
-        local success, result = pcall(function()
-            model:SetPrimaryPartCFrame(start:Lerp(ennd, i))
-        end)
-
-        if not success then
-            print("Erro ao mover o modelo:", result)
-            isMoving = false  -- Encerra o movimento em caso de erro
-        end
-
-        if i >= 1 then
-            isMoving = false  -- Encerra o movimento quando atinge o destino
-        end
-
-        RunService.Stepped:Wait()
+	local CoinContainer = Workspace:FindFirstChild("CoinContainer", true);
+    	if CoinContainer and Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == true then
+ 
+	        local x = game:GetService("RunService").Heartbeat:Wait() / hZ
+	        i = math.clamp(i + (AddBy * x), 0, 1)
+	
+	        local success, result = pcall(function()
+	            model:SetPrimaryPartCFrame(start:Lerp(ennd, i))
+	        end)
+	
+	        if not success then
+	            print("Erro ao mover o modelo:", result)
+	            isMoving = false  -- Encerra o movimento em caso de erro
+	        end
+	
+	        if i >= 1 then
+	            isMoving = false  -- Encerra o movimento quando atinge o destino
+		end
+	
+             	RunService.Stepped:Wait()
+	end		
     end
 end
  
