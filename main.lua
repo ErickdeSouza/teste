@@ -7,7 +7,7 @@ local humanoid = Client.Character:WaitForChild("Humanoid")
 local Character = Client.Character;
 local Humanoid = Character:FindFirstChild("Humanoid") or Character:WaitForChild("Humanoid");
 local RunService = game:GetService('RunService');
-
+local RootPart = Character:FindFirstChild("HumanoidRootPart") or Character:WaitForChild("HumanoidRootPart");
  
 
  
@@ -46,12 +46,14 @@ end
 function movemodel(model,start,ennd,AddBy, CoinContainer)
  
  local i = 0
- 
+ repeat
   local x = game:GetService("RunService").Heartbeat:Wait() / hZ
   i = math.clamp(i + (AddBy * x), 0, 1)
   local success, result = pcall(function()
     model:SetPrimaryPartCFrame(start:Lerp(ennd,i))
+    if not RootPart then break end
   end)
+until RootPart.CFrame == ennd
 end
   
 
@@ -81,7 +83,6 @@ while wait() do
         noclip()
         if coin then
             repeat
-		local RootPart = Character:FindFirstChild("HumanoidRootPart") or Character:WaitForChild("HumanoidRootPart");
                 local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
                 local add = 1 / dist
                 movemodel(Client.Character, RootPart.CFrame, CFrame.new(coin.Position), add, CoinContainer)
