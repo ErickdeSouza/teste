@@ -45,7 +45,7 @@ end
 function movemodel(model, start, ennd, AddBy)
     local i = 0
     local fds = function(start) 
-	if start ~= sla then
+	if start = sla then
 		return start:Lerp(ennd, i)
 	else
 		print("oi")
@@ -63,7 +63,8 @@ function movemodel(model, start, ennd, AddBy)
             model:SetPrimaryPartCFrame(fds(start))
 	end)
 	j = 1
-     until RootPart.CFrame == ennd or i >= 1
+     until j == 1
+     wait(1)
 end
   
 
