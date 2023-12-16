@@ -44,7 +44,7 @@ end
  
  
 function movemodel(model,start,ennd,AddBy,dist)
- local speedMultiplier = -1 / (dist + 1)
+ local speedMultiplier = dist + 1
  local i = 0
  repeat
   local x = game:GetService("RunService").Heartbeat:Wait() / hZ
