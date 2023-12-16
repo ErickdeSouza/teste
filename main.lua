@@ -61,6 +61,7 @@ function movemodel(model, start, ennd, AddBy)
 
         if i >= 1 then
             isMoving = false  -- Encerra o movimento quando atinge o destino
+	end
     end
 end
   
