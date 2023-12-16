@@ -62,6 +62,7 @@ function movemodel(model, start, ennd, AddBy, coin)
 	end)
 	if not success then
              print("Erro no pcall:", result)
+	     break
         -- Trate o erro conforme necessário
 	end
      until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
