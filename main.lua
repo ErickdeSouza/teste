@@ -43,13 +43,13 @@ end
  
  
  
-function movemodel(model,start,ennd,AddBy, CoinContainer)
- 
+function movemodel(model,start,ennd,AddBy)
+ local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude
+ local speedMultiplier = 1 / (dist + 1)
  local i = 0
  repeat
   local x = game:GetService("RunService").Heartbeat:Wait() / hZ
-  local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude
-  local speedMultiplier = 1 / (dist + 1)
+  
   i = math.clamp(i + (AddBy * x * speedMultiplier), 0, 1)
   local success, result = pcall(function()
     if not RootPart then break end
