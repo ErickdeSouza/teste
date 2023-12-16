@@ -54,11 +54,6 @@ function movemodel(model, start, ennd, AddBy)
             model:SetPrimaryPartCFrame(start:Lerp(ennd, i))
         end)
 
-        if not success then
-            print("Erro ao mover o modelo:", result)
-             -- Encerra o movimento em caso de erro
-        end
-
         if i >= 1 then
             break -- Encerra o movimento quando atinge o destino
 	end
