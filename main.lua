@@ -44,9 +44,9 @@ end
  
 function movemodel(model, start, ennd, AddBy)
     local i = 0
-    local isMoving = true
     
-    while isMoving do
+    
+    while wait() do
         local x = game:GetService("RunService").Heartbeat:Wait() / hZ
         i = math.clamp(i + (AddBy * x), 0, 1)
 
@@ -56,11 +56,11 @@ function movemodel(model, start, ennd, AddBy)
 
         if not success then
             print("Erro ao mover o modelo:", result)
-            isMoving = false  -- Encerra o movimento em caso de erro
+             -- Encerra o movimento em caso de erro
         end
 
         if i >= 1 then
-            isMoving = false  -- Encerra o movimento quando atinge o destino
+            break -- Encerra o movimento quando atinge o destino
 	end
     end
 end
