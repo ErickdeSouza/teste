@@ -48,6 +48,7 @@ function movemodel(model, start, ennd, AddBy)
 	if start ~= sla then
 		return start:Lerp(ennd, i)
 	else
+		print("oi")
 		return RootPart.CFrame:Lerp(ennd, i)
 	end
      end
