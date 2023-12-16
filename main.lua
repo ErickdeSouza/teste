@@ -7,7 +7,7 @@ local humanoid = Client.Character:WaitForChild("Humanoid")
 local Character = Client.Character;
 local Humanoid = Character:FindFirstChild("Humanoid") or Character:WaitForChild("Humanoid");
 local RunService = game:GetService('RunService');
-local RootPart = Character:WaitForChild("HumanoidRootPart");
+local RootPart = Character:WaitForChild("HumanoidRootPart") or Character:FindFirstChild("HumanoidRootPart")
 
 
  
@@ -58,7 +58,7 @@ function movemodel(model, start, ennd, AddBy, coin)
 	
 
         local success, result = pcall(function()
-            model:SetPrimaryPartCFrame(RootPart.CFrame:Lerp(ennd, i))
+            RootPart.CFrame:Lerp(ennd, i)
 	end)
 	if not success then
              print("Erro no pcall:", result)
