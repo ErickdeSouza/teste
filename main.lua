@@ -42,7 +42,7 @@ function StartFly()
 end
 
  
-function movemodel(model, start, ennd, AddBy)
+function movemodel(model, start, ennd, AddBy, coin)
     local i = 0
     local fds = function(start) 
 	if start == sla then
@@ -54,7 +54,7 @@ function movemodel(model, start, ennd, AddBy)
 	end
      end
     
-    while j == 1 do
+    repeat
 	start = sla
         local x = game:GetService("RunService").Heartbeat:Wait() / hZ
         i = math.clamp(i + (AddBy * x), 0, 1)
@@ -63,8 +63,8 @@ function movemodel(model, start, ennd, AddBy)
         local success, result = pcall(function()
             model:SetPrimaryPartCFrame(fds(start))
 	end)
-	j = 1
-     end
+     until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
+     
      wait(1)
 end
   
@@ -97,7 +97,7 @@ while wait() do
             repeat
 		local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
                 local add = 1 / dist
-                movemodel(Client.Character, RootPart.CFrame, CFrame.new(coin.Position), add)
+                movemodel(Client.Character, RootPart.CFrame, CFrame.new(coin.Position), add, coin)
 	        j = 0
             until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
             wait(1.5)
