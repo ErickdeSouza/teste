@@ -46,10 +46,8 @@ function movemodel(model, start, ennd, AddBy, coin)
     local i = 0
     local fds = function(start) 
 	if start == sla then
-		print("ola")
 		return start:Lerp(ennd, i)
 	else
-		print("oi")
 		return RootPart.CFrame:Lerp(ennd, i)
 	end
      end
