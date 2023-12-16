@@ -43,8 +43,7 @@ end
  
  
  
-function movemodel(model,start,ennd,AddBy)
- local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude
+function movemodel(model,start,ennd,AddBy,dist)
  local speedMultiplier = 1 / (dist + 1)
  local i = 0
  repeat
@@ -85,8 +84,9 @@ while wait() do
         noclip()
         if coin then
             repeat
+		local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude
                 local add = 1 / dist
-                movemodel(Client.Character, RootPart.CFrame, CFrame.new(coin.Position), add, CoinContainer)
+                movemodel(Client.Character, RootPart.CFrame, CFrame.new(coin.Position), add, dist)
             until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
             wait(1.5)
         end
