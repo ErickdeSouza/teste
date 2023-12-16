@@ -61,6 +61,10 @@ function movemodel(model, start, ennd, AddBy, coin)
         local success, result = pcall(function()
             model:SetPrimaryPartCFrame(start:Lerp(ennd, i))
 	end)
+	if not success then
+             print("Erro no pcall:", result)
+        -- Trate o erro conforme necessário
+	end
      until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
      
      wait(1)
