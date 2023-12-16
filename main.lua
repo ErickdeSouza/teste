@@ -52,7 +52,7 @@ function movemodel(model, start, ennd, AddBy)
 	end
      end
     
-    while wait() do
+    repeat
         local x = game:GetService("RunService").Heartbeat:Wait() / hZ
         i = math.clamp(i + (AddBy * x), 0, 1)
 	
@@ -62,11 +62,7 @@ function movemodel(model, start, ennd, AddBy)
 	end)
 	start = sla
 	j = 1
-        if j == 1 then
-	    j = 1
-            break -- Encerra o movimento quando atinge o destino
-	end
-    end
+     until RootPart.CFrame == ennd or i >= 1
 end
   
 
