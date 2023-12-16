@@ -44,7 +44,7 @@ end
  
 function movemodel(model, start, ennd, AddBy)
     local i = 0
-    local fds = function() 
+    local fds = function(start) 
 	if start ~= sla then
 		return start:Lerp(ennd, i)
 	else
@@ -58,7 +58,7 @@ function movemodel(model, start, ennd, AddBy)
 	
 
         local success, result = pcall(function()
-            model:SetPrimaryPartCFrame(fds)
+            model:SetPrimaryPartCFrame(fds(start))
         end)retunr
 	start = sla
         if i >= 1 then
