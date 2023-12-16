@@ -23,7 +23,7 @@ local bv;
 local bav;
 local cam;
 local flying = true;
-
+local sla;
  
 function StartFly()
     if not Client.Character or not Character.Head or flying then return end;
@@ -49,11 +49,12 @@ function movemodel(model, start, ennd, AddBy)
     while wait() do
         local x = game:GetService("RunService").Heartbeat:Wait() / hZ
         i = math.clamp(i + (AddBy * x), 0, 1)
+	
 
         local success, result = pcall(function()
-            model:SetPrimaryPartCFrame(start:Lerp(ennd, i))
+            model:SetPrimaryPartCFrame(if start ~= sla then start:Lerp(ennd, i) else RootPart.CFrame:Lerp(ennd, i) end)
         end)
-
+	start = Sla
         if i >= 1 then
             break -- Encerra o movimento quando atinge o destino
 	end
