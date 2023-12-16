@@ -7,7 +7,7 @@ local humanoid = Client.Character:WaitForChild("Humanoid")
 local Character = Client.Character;
 local Humanoid = Character:FindFirstChild("Humanoid") or Character:WaitForChild("Humanoid");
 local RunService = game:GetService('RunService');
-local RootPart = Character:FindFirstChild("HumanoidRootPart") or Character:WaitForChild("HumanoidRootPart");
+local RootPart = Character:WaitForChild("HumanoidRootPart");
 
 
  
