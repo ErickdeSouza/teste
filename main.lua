@@ -49,7 +49,7 @@ function movemodel(model,start,ennd,AddBy,dist)
  repeat
   local x = game:GetService("RunService").Heartbeat:Wait() / hZ
   
-  i = math.clamp(i + (AddBy * x * speedMultiplier), 0, 1)
+  i = math.clamp(i + (AddBy * x / speedMultiplier), 0, 1)
   if not RootPart then break end
   local success, result = pcall(function()
     model:SetPrimaryPartCFrame(start:Lerp(ennd,i))    
