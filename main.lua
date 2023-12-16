@@ -52,8 +52,8 @@ function movemodel(model,start,ennd,AddBy, CoinContainer)
   local speedMultiplier = 1 / (dist + 1)
   i = math.clamp(i + (AddBy * x * speedMultiplier), 0, 1)
   local success, result = pcall(function()
-    model:SetPrimaryPartCFrame(start:Lerp(ennd,i))
     if not RootPart then break end
+    model:SetPrimaryPartCFrame(start:Lerp(ennd,i))    
   end)
 until RootPart.CFrame == ennd
 end
