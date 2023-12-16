@@ -7,7 +7,8 @@ local humanoid = Client.Character:WaitForChild("Humanoid")
 local Character = Client.Character;
 local Humanoid = Character:FindFirstChild("Humanoid") or Character:WaitForChild("Humanoid");
 local RunService = game:GetService('RunService');
- 
+local RootPart = Character:FindFirstChild("HumanoidRootPart") or Character:WaitForChild("HumanoidRootPart");
+
 
  
 local hZ = 1 / 60
@@ -46,7 +47,6 @@ function movemodel(model, start, ennd, AddBy)
     local isMoving = true
     
     while isMoving do
-	local RootPart = Character:FindFirstChild("HumanoidRootPart") or Character:WaitForChild("HumanoidRootPart");
         local x = game:GetService("RunService").Heartbeat:Wait() / hZ
         i = math.clamp(i + (AddBy * x), 0, 1)
 
@@ -61,9 +61,6 @@ function movemodel(model, start, ennd, AddBy)
 
         if i >= 1 then
             isMoving = false  -- Encerra o movimento quando atinge o destino
-        end
-
-        RunService.Stepped:Wait()
     end
 end
   
@@ -94,10 +91,9 @@ while wait() do
         noclip()
         if coin then
             repeat
-		local RootPart = Character:FindFirstChild("HumanoidRootPart")
 		local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
                 local add = 1 / dist
-                movemodel(Client.Character, RootPart.CFrame, CFrame.new(coin.Position), add, dist)
+                movemodel(Client.Character, RootPart.CFrame, CFrame.new(coin.Position), add)
             until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
             wait(1.5)
         end
