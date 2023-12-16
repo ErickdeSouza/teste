@@ -16,7 +16,7 @@ local speed = .6
 
  
  
- 
+local j = 0;
 local c;
 local h;
 local bv;
@@ -61,7 +61,9 @@ function movemodel(model, start, ennd, AddBy)
             model:SetPrimaryPartCFrame(fds(start))
 	end)
 	start = sla
-        if RootPart.CFrame == ennd then
+	j = 1
+        if j == 1 then
+	    j = 1
             break -- Encerra o movimento quando atinge o destino
 	end
     end
