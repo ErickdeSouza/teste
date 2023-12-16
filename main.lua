@@ -40,11 +40,17 @@ function StartFly()
     h.Died:connect(function() flying = false end)
  
 end
- 
+
  
 function movemodel(model, start, ennd, AddBy)
     local i = 0
-    
+    local fds = function() 
+	if start ~= sla then
+		return start:Lerp(ennd, i)
+	else
+		return RootPart.CFrame:Lerp(ennd, i)
+	end
+     end
     
     while wait() do
         local x = game:GetService("RunService").Heartbeat:Wait() / hZ
@@ -52,7 +58,7 @@ function movemodel(model, start, ennd, AddBy)
 	
 
         local success, result = pcall(function()
-            model:SetPrimaryPartCFrame(function() if start ~= sla then return start:Lerp(ennd, i) else return RootPart.CFrame:Lerp(ennd, i) end end)
+            model:SetPrimaryPartCFrame(fds)
         end)retunr
 	start = sla
         if i >= 1 then
