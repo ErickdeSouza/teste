@@ -99,6 +99,7 @@ while wait() do
                 local add = 1 / dist
                 movemodel(Client.Character, RootPart.CFrame, CFrame.new(coin.Position), add)
             until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
+	    j = 0
             wait(1.5)
         end
     end
