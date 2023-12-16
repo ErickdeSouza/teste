@@ -59,7 +59,6 @@ function movemodel(model, start, ennd, AddBy)
 
         local success, result = pcall(function()
             model:SetPrimaryPartCFrame(fds(start))
-        end)retunr
 	start = sla
         if i >= 1 then
             break -- Encerra o movimento quando atinge o destino
