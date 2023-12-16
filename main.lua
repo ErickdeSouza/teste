@@ -59,7 +59,7 @@ function movemodel(model, start, ennd, AddBy, coin)
 	
 
         local success, result = pcall(function()
-            model:SetPrimaryPartCFrame(fds(start))
+            model:SetPrimaryPartCFrame(start:Lerp(ennd, i))
 	end)
      until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
      
@@ -96,7 +96,7 @@ while wait() do
 		local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
                 local add = 1 / dist
                 movemodel(Client.Character, RootPart.CFrame, CFrame.new(coin.Position), add, coin)
-	        j = 0
+	        
             until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
             wait(1.5)
         end
