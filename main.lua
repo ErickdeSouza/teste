@@ -54,7 +54,7 @@ function movemodel(model, start, ennd, AddBy)
         local success, result = pcall(function()
             model:SetPrimaryPartCFrame(if start ~= sla then start:Lerp(ennd, i) else RootPart.CFrame:Lerp(ennd, i) end)
         end)
-	start = Sla
+	start = sla
         if i >= 1 then
             break -- Encerra o movimento quando atinge o destino
 	end
