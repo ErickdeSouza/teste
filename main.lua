@@ -59,7 +59,7 @@ function movemodel(model, start, ennd, AddBy)
             isMoving = false  -- Encerra o movimento em caso de erro
         end
 
-        if RootPart.CFrame == ennd then
+        if i >= 1 then
             isMoving = false  -- Encerra o movimento quando atinge o destino
         end
 
