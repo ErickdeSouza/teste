@@ -54,7 +54,7 @@ function movemodel(model, start, ennd, AddBy)
 	end
      end
     
-    repeat
+    while j == 1 do
 	start = sla
         local x = game:GetService("RunService").Heartbeat:Wait() / hZ
         i = math.clamp(i + (AddBy * x), 0, 1)
@@ -64,7 +64,7 @@ function movemodel(model, start, ennd, AddBy)
             model:SetPrimaryPartCFrame(fds(start))
 	end)
 	j = 1
-     until j == 1
+     end
      wait(1)
 end
   
