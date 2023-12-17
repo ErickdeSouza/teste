@@ -80,11 +80,10 @@ while wait() do
                    local add = 1 / dist
                    local x = game:GetService("RunService").Heartbeat:Wait() / hZ
 	           i = math.clamp(i + (add * x), 0, 1)
-	           if not Character.PrimaryPart then break end
-                   local a,b = pcall(function() Charater:SetPrimaryPartCFrame(RootPart.CFrame:Lerp(CFrame.new(coin.Position),i)) end)
+                   local a,b = pcall(function() RootPart.CFrame:Lerp(CFrame.new(coin.Position),i) end)
 		   if not a then game:GetService("StarterGui"):SetCore("SendNotification",{Title = "Aviso",Text = b,}) end              
 
-	    until RootPart.CFrame == CFrame.new(coin.Position) or not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
+	    until Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == false or not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
             wait(1.2)
         end
     end
