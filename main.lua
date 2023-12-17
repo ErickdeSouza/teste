@@ -47,16 +47,14 @@ end
 function movemodel(model,start,End,AddBy,coin)
     local i = 0
     while wait() do
-          if not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server" then
-		break
-	  else 
-                 local x = game:GetService("RunService").Heartbeat:Wait() / hZ
-		i = math.clamp(i + (AddBy * x), 0, 1)
-		if not model.PrimaryPart then break end
-                local a,b = pcall(function() model:SetPrimaryPartCFrame(start:Lerp(End,i)) end)
-
-
-         end
+	repeat
+        local x = game:GetService("RunService").Heartbeat:Wait() / hZ
+	i = math.clamp(i + (AddBy * x), 0, 1)
+	if not model.PrimaryPart then break end
+        local a,b = pcall(function() model:SetPrimaryPartCFrame(start:Lerp(End,i)) end)
+        until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
+        break
+         
      end        
 end
 
