@@ -7,8 +7,7 @@ local humanoid = Client.Character:WaitForChild("Humanoid")
 local Character = Client.Character;
 local Humanoid = Character:FindFirstChild("Humanoid") or Character:WaitForChild("Humanoid");
 local RunService = game:GetService('RunService');
-local RootPart = Character:WaitForChild("HumanoidRootPart") or Character:FindFirstChild("HumanoidRootPart")
-
+local RootPart = Character:FindFirstChild("HumanoidRootPart") or Character:WaitForChild("HumanoidRootPart");
 
  
 local hZ = 1 / 60
@@ -53,7 +52,7 @@ function movemodel(model, start, ennd, AddBy)
         i = math.clamp(i + (AddBy * x), 0, 1)
 
         local success, result = pcall(function()
-           start = model.PrimaryPart.CFrame:Lerp(ennd, i)
+           model:SetPrimaryPartCFrame(start:Lerp(CFrame.new(ennd- Vector3.new(0, 2.5, 0)) * CFrame.Angles(0, 0, math.rad(180)), i))
         end)
 
         if not success then
@@ -101,7 +100,7 @@ while wait() do
             repeat
 		   local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
                    local add = 1 / dist
-                   movemodel(Client.Character, RootPart.CFrame, CFrame.new(coin.Position), add)
+                   movemodel(Client.Character, RootPart.CFrame, coin.Position, add)
 		   if Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == false then break end
 		   game:GetService("StarterGui"):SetCore("SendNotification",{Title = "Aviso",Text = 'oa',}) 
 		   wait(0.1)
