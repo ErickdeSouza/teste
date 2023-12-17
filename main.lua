@@ -82,7 +82,7 @@ end
  
 while wait() do
 	local CoinContainer = Workspace:FindFirstChild("CoinContainer", true);
-    if Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == true then
+    if CoinContainer and Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == true then
         local coin = CoinContainer:FindFirstChild("Coin_Server")
         
         noclip()
