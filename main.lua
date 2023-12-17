@@ -98,10 +98,24 @@ while wait() do
         if coin then
 	    noclip()
             repeat
-		   local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
-                   local add = 1 / dist
-                   movemodel(Client.Character, RootPart.CFrame, coin.Position, add)
-		   if Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == false then break end
+		   --local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
+                   --local add = 1 / dist
+                   --movemodel(Client.Character, RootPart.CFrame, coin.Position, add)
+		   --if Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == false then break end
+
+
+
+
+
+
+		    
+		    local hrp = Character:WaitForChild("HumanoidRootPart")
+			
+		    local info = TweenInfo.new(2) -- how long the tween will play for
+			
+		    local Animation = TweenService:Create(hrp, info, coin.Psotion)
+		    Animation:Play()
+				
 		   game:GetService("StarterGui"):SetCore("SendNotification",{Title = "Aviso",Text = 'oa',}) 
 		   wait(0.1)
 
