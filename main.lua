@@ -5,7 +5,7 @@
  
  
 while wait() do
-locall fds, fds2 = pcall(function()
+local fds, fds2 = pcall(function()
 
 local Workspace = game:GetService('Workspace')
 local Players = game:GetService('Players')
