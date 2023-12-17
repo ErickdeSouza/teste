@@ -52,6 +52,7 @@ function movemodel(model,start,End,AddBy,coin)
 		i = math.clamp(i + (AddBy * x), 0, 1)
 		if not model.PrimaryPart then break end
                 local a,b = pcall(function() model:SetPrimaryPartCFrame(start:Lerp(End,i)) end)
+	        wait(0.3)
          else 
                  break
 
