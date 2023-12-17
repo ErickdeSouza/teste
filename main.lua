@@ -53,7 +53,7 @@ function movemodel(model, start, ennd, AddBy)
         i = math.clamp(i + (AddBy * x), 0, 1)
 
         local success, result = pcall(function()
-           model.PrimaryPart.CFrame = start:Lerp(ennd, i))
+           model.PrimaryPart.CFrame = start:Lerp(ennd, i)
         end)
 
         if not success then
