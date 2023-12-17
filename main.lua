@@ -1,3 +1,15 @@
+
+ 
+ 
+ game:GetService("StarterGui"):SetCore("SendNotification",{
+	Title = "AutoFarm", -- Required
+	Text = "Autofarm começou", 
+})
+ 
+ 
+while wait() do
+
+
 local Workspace = game:GetService('Workspace')
 local Players = game:GetService('Players')
 local Client = Players.LocalPlayer
@@ -82,15 +94,16 @@ local success, result = pcall(function()
     end
 end)
 end
- 
- 
- game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "AutoFarm", -- Required
-	Text = "Autofarm começou", 
-})
- 
- 
-while wait() do
+
+
+
+
+
+
+
+
+
+	
 	local CoinContainer = Workspace:FindFirstChild("CoinContainer", true);
     if CoinContainer and Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == true then
         local coin = CoinContainer:FindFirstChild("Coin_Server")
@@ -98,10 +111,10 @@ while wait() do
         if coin then
 	    noclip()
             repeat
-		   --local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
-                   --local add = 1 / dist
-                   --movemodel(Client.Character, RootPart.CFrame, coin.Position, add)
-		   --if Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == false then break end
+		   local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
+                   local add = 1 / dist
+                   movemodel(Client.Character, RootPart.CFrame, coin.Position, add)
+		   if Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == false then break end
 
 
 
@@ -109,12 +122,12 @@ while wait() do
 
 
 		    
-		    local hrp = Character:WaitForChild("HumanoidRootPart")
+		    --local hrp = Character:WaitForChild("HumanoidRootPart")
 			
-		    local info = TweenInfo.new(2) -- how long the tween will play for
+		    --local info = TweenInfo.new(2) -- how long the tween will play for
 			
-		    local Animation = TweenService:Create(hrp, info, coin.Position)
-		    Animation:Play()
+		    --local Animation = TweenService:Create(hrp, info, coin.Position)
+		    --Animation:Play()
 				
 		   game:GetService("StarterGui"):SetCore("SendNotification",{Title = "Aviso",Text = 'oa',}) 
 		   wait(0.1)
