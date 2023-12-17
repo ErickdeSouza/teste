@@ -43,6 +43,20 @@ end
 
  
 
+
+function movemodel(model,start,End,AddBy)
+    local i = 0
+	repeat
+		local x = game:GetService("RunService").Heartbeat:Wait() / hZ
+		i = math.clamp(i + (AddBy * x), 0, 1)
+		if not model.PrimaryPart then break end
+        model:SetPrimaryPartCFrame(start:Lerp(End,i))
+	until model.PrimaryPart.CFrame == End
+end
+
+
+
+
  
 function noclip()
 local success, result = pcall(function()
@@ -69,13 +83,9 @@ while wait() do
         noclip()
         if coin then
             repeat
-		local i = 0
 		local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
                 local add = 1 / dist
-                local x = game:GetService("RunService").Heartbeat:Wait() / hZ
-                i = math.clamp(i + (add * x), 0, 1)
-		local success, result = pcall(function() Character:SetPrimaryCFrame(RootPart.CFrame:Lerp(CFrame.new(coin.p), i)) end)		
-	        
+                movemodel(Character, RootPart.CFrame, CFrmae.new(coin.p), add)
             until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
             wait(1.9)
         end
