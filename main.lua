@@ -72,15 +72,15 @@ while wait() do
 	local CoinContainer = Workspace:FindFirstChild("CoinContainer", true);
     if CoinContainer and Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == true then
         local coin = CoinContainer:FindFirstChild("Coin_Server")
-        local i = 0
-        noclip()
+        local i = 0 
         if coin then
+	    noclip()
             repeat
 		   local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
                    local add = 1 / dist
                    local x = game:GetService("RunService").Heartbeat:Wait() / hZ
 	           i = math.clamp(i + (add * x), 0, 1)
-                   local a,b = pcall(function() RootPart.CFrame = RootPart.CFrame:Lerp(CFrame.new(coin.Position),0.01) end)
+                   local a,b = pcall(function() RootPart.CFrame = RootPart.CFrame:Lerp(CFrame.new(coin.Position), 0.0001) end)
 		   if not a then game:GetService("StarterGui"):SetCore("SendNotification",{Title = "Aviso",Text = b,}) end              
 
 	    until Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == false or not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
