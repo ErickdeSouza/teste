@@ -44,20 +44,9 @@ end
  
 
 
-function movemodel(model,start,End,AddBy,coin)
-    local i = 0
-    while wait() do
-	repeat
-        local x = game:GetService("RunService").Heartbeat:Wait() / hZ
-	i = math.clamp(i + (AddBy * x), 0, 1)
-	if not model.PrimaryPart then break end
-        local a,b = pcall(function() model:SetPrimaryPartCFrame(start:Lerp(End,i)) end)
-        until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
-        break
-         
-     end        
-end
 
+         
+     
 
 
 
@@ -83,15 +72,19 @@ while wait() do
 	local CoinContainer = Workspace:FindFirstChild("CoinContainer", true);
     if CoinContainer and Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == true then
         local coin = CoinContainer:FindFirstChild("Coin_Server")
-        
+        local i = 0
         noclip()
         if coin then
             repeat
 		local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
                 local add = 1 / dist
-                movemodel(Character, RootPart.CFrame, CFrame.new(coin.Position), add, coin)
+                local x = game:GetService("RunService").Heartbeat:Wait() / hZ
+	        i = math.clamp(i + (add * x), 0, 1)
+	        if not Character.PrimaryPart then break end
+                local a,b = pcall(function() Character:SetPrimaryPartCFrame(RootPart.CFrame:Lerp(CFrame.new(coin.Position),i)) end)
+
             until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
-            wait(1.9)
+            wait(1.4)
         end
     end
 end
