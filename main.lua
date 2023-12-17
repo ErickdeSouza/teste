@@ -85,7 +85,7 @@ while wait() do
             repeat
 		local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
                 local add = 1 / dist
-                movemodel(Character, RootPart.CFrame, CFrmae.new(coin.p), add)
+                movemodel(Character, RootPart.CFrame, CFrame.new(coin.p), add)
             until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
             wait(1.9)
         end
