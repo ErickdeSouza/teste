@@ -75,20 +75,17 @@ while wait() do
         local i = 0
         noclip()
         if coin then
-            while wait() do
-                if not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server" then
-		   break
-		else
+            repeat
 		   local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
                    local add = 1 / dist
                    local x = game:GetService("RunService").Heartbeat:Wait() / hZ
 	           i = math.clamp(i + (add * x), 0, 1)
 	           if not Character.PrimaryPart then break end
                    local a,b = pcall(function() Character:SetPrimaryPartCFrame(RootPart.CFrame:Lerp(CFrame.new(coin.Position),i)) end)
-                   wait(0.007)
-		end
-	    end	
-            wait(1.3)
+                   
+		
+	    until RootPart.CFrame == CFrame.new(coin.Position)	
+            wait(1.2)
         end
     end
 end
