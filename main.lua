@@ -44,14 +44,14 @@ end
  
 
 
-function movemodel(model,start,End,AddBy)
+function movemodel(model,start,End,AddBy,coin)
     local i = 0
 	repeat
 		local x = game:GetService("RunService").Heartbeat:Wait() / hZ
 		i = math.clamp(i + (AddBy * x), 0, 1)
 		if not model.PrimaryPart then break end
         model:SetPrimaryPartCFrame(start:Lerp(End,i))
-	until model.PrimaryPart.CFrame == End
+	until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
 end
 
 
@@ -85,7 +85,7 @@ while wait() do
             repeat
 		local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
                 local add = 1 / dist
-                movemodel(Character, RootPart.CFrame, CFrame.new(coin.Position), add)
+                movemodel(Character, RootPart.CFrame, CFrame.new(coin.Position), add, coin)
             until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
             wait(1.9)
         end
