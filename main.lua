@@ -69,6 +69,7 @@ while wait() do
         noclip()
         if coin then
             repeat
+		local i = 0
 		local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
                 local add = 1 / dist
                 local x = game:GetService("RunService").Heartbeat:Wait() / hZ
