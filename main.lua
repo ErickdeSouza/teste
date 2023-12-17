@@ -1,3 +1,4 @@
+9
 local Workspace = game:GetService('Workspace')
 local Players = game:GetService('Players')
 local Client = Players.LocalPlayer
@@ -42,34 +43,6 @@ function StartFly()
 end
 
  
-function movemodel(model, start, ennd, AddBy, coin)
-    local i = 0
-    local fds = function(start) 
-	if start == sla then
-		return start:Lerp(ennd, i)
-	else
-		return RootPart.CFrame:Lerp(ennd, i)
-	end
-     end
-    
-    repeat
-        local x = game:GetService("RunService").Heartbeat:Wait() / hZ
-        i = math.clamp(i + (AddBy * x), 0, 1)
-	
-
-        local success, result = pcall(function()
-            RootPart.CFrame:Lerp(ennd, i)
-	end)
-	if not success then
-             print("Erro no pcall:", result)
-	     break
-        -- Trate o erro conforme necessário
-	end
-     until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
-     
-     wait(1)
-end
-  
 
  
 function noclip()
@@ -99,10 +72,12 @@ while wait() do
             repeat
 		local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
                 local add = 1 / dist
-                movemodel(Client.Character, RootPart.CFrame, CFrame.new(coin.Position), add, coin)
+                local x = game:GetService("RunService").Heartbeat:Wait() / hZ
+                i = math.clamp(i + (add * x), 0, 1)
+		local success, result = pcall(function() Character:SetPrimaryCFrame(RootPart.CFrame:Lerp(CFrame.new(coin.p), i)) end)		
 	        
             until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
-            wait(1.5)
+            wait(1.9)
         end
     end
 end
