@@ -80,7 +80,7 @@ while wait() do
                    local add = 1 / dist
                    local x = game:GetService("RunService").Heartbeat:Wait() / hZ
 	           i = math.clamp(i + (add * x), 0, 1)
-	           if not Character:SetPrimaryPart then break end
+	           if not Character.PrimaryPart then break end
                    local a,b = pcall(function() Character:SetPrimaryPartCFrame(RootPart.CFrame:Lerp(CFrame.new(coin.Position),i)) end)
                    
 		
