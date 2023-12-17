@@ -102,6 +102,7 @@ while wait() do
 		   local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
                    local add = 1 / dist
                    movemodel(RootPart.CFrame, CFrame.new(coin.Position), add)
+		   if Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == false then break end
 		   game:GetService("StarterGui"):SetCore("SendNotification",{Title = "Aviso",Text = 'oa',})              
 
 	    until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
