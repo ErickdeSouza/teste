@@ -86,6 +86,7 @@ while wait() do
 	           if not Character.PrimaryPart then break end
                    local a,b = pcall(function() Character:SetPrimaryPartCFrame(RootPart.CFrame:Lerp(CFrame.new(coin.Position),i)) end)
                    wait(0.007)
+		end
 	    end	
             wait(1.3)
         end
