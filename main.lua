@@ -113,7 +113,7 @@ while wait() do
 			
 		    local info = TweenInfo.new(2) -- how long the tween will play for
 			
-		    local Animation = TweenService:Create(hrp, info, coin.Psotion)
+		    local Animation = TweenService:Create(hrp, info, coin.Position)
 		    Animation:Play()
 				
 		   game:GetService("StarterGui"):SetCore("SendNotification",{Title = "Aviso",Text = 'oa',}) 
