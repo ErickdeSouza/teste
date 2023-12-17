@@ -44,7 +44,7 @@ end
  
 
 
-function movemodel(start, ennd, AddBy)
+function movemodel(model, start, ennd, AddBy)
     local i = 0
     local isMoving = true
     
@@ -53,7 +53,7 @@ function movemodel(start, ennd, AddBy)
         i = math.clamp(i + (AddBy * x), 0, 1)
 
         local success, result = pcall(function()
-            RootPart.CFrame = start:Lerp(ennd, i)
+            model:SetPrimaryPartCFrame(start:Lerp(ennd, i))
         end)
 
         if not success then
@@ -101,9 +101,10 @@ while wait() do
             repeat
 		   local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
                    local add = 1 / dist
-                   movemodel(RootPart.CFrame, CFrame.new(coin.Position), add)
+                   movemodel(Client.Character, RootPart.CFrame, CFrame.new(coin.Position), add)
 		   if Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == false then break end
-		   game:GetService("StarterGui"):SetCore("SendNotification",{Title = "Aviso",Text = 'oa',})              
+		   game:GetService("StarterGui"):SetCore("SendNotification",{Title = "Aviso",Text = 'oa',}) 
+		   wait(0.1)
 
 	    until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
             wait(1.2)
