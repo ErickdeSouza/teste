@@ -46,7 +46,7 @@ end
 
 function movemodel(model,start,End,AddBy,coin)
     local i = 0
-    while wait()
+    while wait() do
           if coin:IsDescendantOf(Workspace) or coin.Name == "Coin_Server" then
 		local x = game:GetService("RunService").Heartbeat:Wait() / hZ
 		i = math.clamp(i + (AddBy * x), 0, 1)
