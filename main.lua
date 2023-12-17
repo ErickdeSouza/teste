@@ -35,7 +35,7 @@ function movemodel(model, start, ennd, AddBy)
         i = math.clamp(i + (AddBy * x), 0, 1)
 
         local success, result = pcall(function()
-            model:SetPrimaryPartCFrame(start:Lerp(CFrame.new(ennd) * CFrame.Angles(math.rad(90), 0, 0), i))
+            model:SetPrimaryPartCFrame(start:Lerp(CFrame.new(ennd), i))
         end)
 
         if not success then
