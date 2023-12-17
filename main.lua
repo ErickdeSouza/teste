@@ -44,7 +44,30 @@ end
  
 
 
+function movemodel(start, ennd, AddBy)
+    local i = 0
+    local isMoving = true
+    
+    while isMoving do
+        local x = game:GetService("RunService").Heartbeat:Wait() / hZ
+        i = math.clamp(i + (AddBy * x), 0, 1)
 
+        local success, result = pcall(function()
+            RootPart.CFrame = start:Lerp(ennd, i)
+        end)
+
+        if not success then
+            print("Erro ao mover o modelo:", result)
+            isMoving = false  -- Encerra o movimento em caso de erro
+        end
+
+        if i >= 1 then
+            isMoving = false  -- Encerra o movimento quando atinge o destino
+        end
+
+        RunService.Stepped:Wait()
+    end
+end
          
      
 
@@ -78,12 +101,10 @@ while wait() do
             repeat
 		   local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
                    local add = 1 / dist
-                   local x = game:GetService("RunService").Heartbeat:Wait() / hZ
-	           i = math.clamp(i + (add * x), 0, 1)
-                   local a,b = pcall(function() RootPart.CFrame = RootPart.CFrame:Lerp(CFrame.new(coin.Position), 0.1) end)
+                   movemodel(RootPart.CFrame, CFrame.new(coin.Position), add)
 		   game:GetService("StarterGui"):SetCore("SendNotification",{Title = "Aviso",Text = 'oa',})              
 
-	    until Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == false or not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
+	    until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
             wait(1.2)
         end
     end
