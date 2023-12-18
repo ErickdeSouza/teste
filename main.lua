@@ -1,4 +1,4 @@
- game:GetService("StarterGui"):SetCore("SendNotification",{
+game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "AutoFarm", -- Required
 	Text = "Autofarm começou", 
 })
@@ -108,6 +108,8 @@ end
         end
     end
 end)
-if not fds then print("Erro:", fds2) else comecar() end
+if not fds then
+   print("Erro:", fds2)
+comecar() 
 end
 end
