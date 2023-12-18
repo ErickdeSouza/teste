@@ -110,6 +110,7 @@ end
 end)
 if not fds then
    print("Erro:", fds2)
-comecar() 
+   comecar()
 end
 end
+comecar()
