@@ -223,7 +223,7 @@ end
 		inv = false
 		wait(3)
 	    end	
-	    if Client.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Visible == f
+	    
             repeat
 		   local dist = (RootPart.CFrame.p - CFrame.new(coin.Position).p).Magnitude / speed
                    local add = 1 / dist
