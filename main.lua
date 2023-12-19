@@ -1,4 +1,19 @@
+wait(5)
 
+game.CoreGui.RobloxPromptGui.promptOverlay.DescendantAdded:Connect(function()
+    local GUI = game.CoreGui.RobloxPromptGui.promptOverlay:FindFirstChild("ErrorPrompt")
+    if GUI then
+        if GUI.TitleFrame.ErrorTitle.Text == "Disconnected" then
+            if #game.Players:GetPlayers() <= 1 then
+                game.Players.LocalPlayer:Kick("\nRejoining...")
+                wait()
+                game:GetService("TeleportService"):Teleport(game.PlaceId, game.Players.LocalPlayer)
+            else
+                game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+            end
+        end
+    end
+end)
 function comecar()
 
 
