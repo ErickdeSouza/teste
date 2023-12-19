@@ -3,7 +3,21 @@ function comecar()
 
 
 
-
+local sucus, resut = pcall(function()
+local First = game:GetService("Players").LocalPlayer
+local button = First.PlayerGui.DeviceSelect.Container:FindFirstChild("Phone").Button
+local VIM = game:GetService("VirtualInputManager")
+if button.Visible == true then
+local vu = game:GetService("VirtualUser") 
+local ta = button.AbsoluteSize.X
+local la = button.AbsoluteSize.Y
+local x = button.AbsolutePosition.X + ta / 2
+local y = button.AbsolutePosition.Y+ la / 2
+print(x, "      ", y)
+VIM:SendMouseButtonEvent(x, y, 0, true, nil, 0)
+VIM:SendMouseButtonEvent(x, y, 0, false, nil,0)
+end
+end)
 
 
 
