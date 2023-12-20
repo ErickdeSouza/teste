@@ -64,7 +64,7 @@ local RootPart = Character:FindFirstChild("HumanoidRootPart") or Character:WaitF
 
  
 local hZ = 1 / 60
-local speed = .6
+local speed = .9
 
  
  
