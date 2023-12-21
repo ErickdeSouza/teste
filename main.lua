@@ -84,6 +84,7 @@ function movemodel(model, start, ennd, AddBy)
 
         if not success then
             print("Erro ao mover o modelo:", result) -- Encerra o movimento em caso de erro
+	    wait(2)
 	    break
         end
 
