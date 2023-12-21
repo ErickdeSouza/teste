@@ -149,10 +149,10 @@ end
 		    --Animation:Play()
 				
 		   
-		   wait(0.1)
+		   
 
 	    until not coin:IsDescendantOf(Workspace) or coin.Name ~= "Coin_Server"
-            wait(1.2)
+            wait(0.7)
 	end
      else
         inv = true
