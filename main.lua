@@ -83,8 +83,8 @@ function movemodel(model, start, ennd, AddBy)
         end)
 
         if not success then
-            print("Erro ao mover o modelo:", result)
-            isMoving = false  -- Encerra o movimento em caso de erro
+            print("Erro ao mover o modelo:", result) -- Encerra o movimento em caso de erro
+	    break
         end
 
         if i >= 1 or RootPart.CFrame == ennd then
